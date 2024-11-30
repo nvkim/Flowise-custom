@@ -156,6 +156,10 @@ You can also customize chatbot with different configuration
         backgroundImage: 'enter image path or link', // If set, this will overlap the background color of the chat window.
         height: 700,
         width: 400,
+        // Maximize button enable by default
+        maximizeButton:{
+          show: true,
+        },
         fontSize: 16,
         starterPrompts: ['What is a bot?', 'Who are you?'], // It overrides the starter prompts set by the chat flow passed
         starterPromptFontSize: 15,
