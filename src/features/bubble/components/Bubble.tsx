@@ -92,12 +92,12 @@ export const Bubble = (props: BubbleProps) => {
       <div
         part="bot"
         style={{
-          height: isMaximized() 
-            ? '100vh' 
-            : (bubbleProps.theme?.chatWindow?.height 
-              ? `${bubbleProps.theme?.chatWindow?.height.toString()}px` 
-              : 'calc(100% - 150px)'),
-          width: isMaximized() ? '100vw' : (bubbleProps.theme?.chatWindow?.width ? `${bubbleProps.theme?.chatWindow?.width.toString()}px` : undefined),
+          height: isMaximized()
+            ? '100vh'
+            : bubbleProps.theme?.chatWindow?.height
+              ? `${bubbleProps.theme?.chatWindow?.height.toString()}px`
+              : 'calc(100% - 150px)',
+          width: isMaximized() ? '100vw' : bubbleProps.theme?.chatWindow?.width ? `${bubbleProps.theme?.chatWindow?.width.toString()}px` : undefined,
           transition: 'all 200ms cubic-bezier(0, 1.2, 1, 1)',
           'transform-origin': isMaximized() ? 'center center' : 'bottom right',
           transform: isBotOpened() ? 'scale3d(1, 1, 1)' : 'scale3d(0, 0, 1)',
@@ -125,20 +125,20 @@ export const Bubble = (props: BubbleProps) => {
                   <button
                     onClick={toggleMaximize}
                     class="py-2 pr-10 bg-transparent text-white rounded-full disabled:opacity-50 disabled:cursor-not-allowed disabled:brightness-100 transition-all filter hover:brightness-90 active:brightness-75"
-                    title={isMaximized() ? "Minimize Chat" : "Maximize Chat"}
+                    title={isMaximized() ? 'Minimize Chat' : 'Maximize Chat'}
                   >
-                    <svg 
-                      viewBox="0 0 24 24" 
-                      width="24" 
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="24"
                       height="24"
                       fill={bubbleProps.theme?.chatWindow?.maximizeButton?.iconColor ?? defaultIconColor}
                     >
                       {isMaximized() ? (
                         // Minimize icon
-                        <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                        <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z" />
                       ) : (
                         // Maximize icon - clean corner brackets style
-                        <path d="M3 3h6v2H5v4H3V3m18 0h-6v2h4v4h2V3M3 21h6v-2H5v-4H3v6m18 0h-6v-2h4v-4h2v6"/>
+                        <path d="M3 3h6v2H5v4H3V3m18 0h-6v2h4v4h2V3M3 21h6v-2H5v-4H3v6m18 0h-6v-2h4v-4h2v6" />
                       )}
                     </svg>
                   </button>
