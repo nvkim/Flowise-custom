@@ -157,7 +157,7 @@ You can also customize chatbot with different configuration
         height: 700,
         width: 400,
         // Maximize button enable by default
-        maximizeButton:{
+        maximizeButton: {
           show: true,
         },
         fontSize: 16,
