@@ -2,7 +2,11 @@
 
 # Flowise Embed
 
-Javascript library to display flowise chatbot on your website
+
+
+An extension of Flowise Embed that allows you to customize the chatbot with ability to maximize/minimize the chatbot window.
+
+
 
 ![Flowise](https://github.com/FlowiseAI/FlowiseChatEmbed/blob/main/images/ChatEmbed.gif?raw=true)
 
