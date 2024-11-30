@@ -74,6 +74,11 @@ export type ChatWindowTheme = {
   clearChatOnReload?: boolean;
   dateTimeToggle?: DateTimeToggleTheme;
   renderHTML?: boolean;
+  maximizeButton?: {
+    show?: boolean;
+    backgroundColor?: string;
+    iconColor?: string;
+  };
 };
 
 export type ButtonTheme = {
