@@ -28,7 +28,7 @@ export const Bubble = (props: BubbleProps) => {
 
   const closeBot = () => {
     setIsBotOpened(false);
-    setIsMaximized(false)
+    setIsMaximized(false);
   };
 
   const toggleBot = () => {
