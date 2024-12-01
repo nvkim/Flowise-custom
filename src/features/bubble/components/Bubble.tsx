@@ -125,7 +125,7 @@ export const Bubble = (props: BubbleProps) => {
                 <Show when={bubbleProps.theme?.chatWindow?.maximizeButton?.show !== false}>
                   <button
                     onClick={toggleMaximize}
-                    class="py-2 pr-10 bg-transparent text-white rounded-full disabled:opacity-50 disabled:cursor-not-allowed disabled:brightness-100 transition-all filter hover:brightness-90 active:brightness-75"
+                    class="py-2 pr-2 bg-transparent text-white rounded-full disabled:opacity-50 disabled:cursor-not-allowed disabled:brightness-100 transition-all filter hover:brightness-90 active:brightness-75"
                     title={isMaximized() ? 'Minimize Chat' : 'Maximize Chat'}
                   >
                     <svg
