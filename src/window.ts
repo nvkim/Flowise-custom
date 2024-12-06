@@ -42,7 +42,7 @@ export const parseChatbot = () => {
       apiHost: props.apiHost,
       chatflowConfig: props.chatflowConfig,
       theme: props.theme,
-      observersConfig: props.observersConfig
+      observersConfig: props.observersConfig,
     });
     document.body.appendChild(target);
   };
