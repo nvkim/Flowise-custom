@@ -1,4 +1,4 @@
-import { observersConfigType } from "@/components/Bot";
+import { observersConfigType } from '@/components/Bot';
 export type BubbleParams = {
     theme?: BubbleTheme;
 };

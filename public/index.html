@@ -20,37 +20,16 @@
     <script type="module">
         import Chatbot from './web.js'
 
-        // Custom submit function
-        const customSubmit = async (body) => {
-            console.log("body", body);
-            // You can modify the body here
-            body.customField = 'custom value';
-
-            // Make your own API call
-            const response = await fetch(`${window.location.origin}/api/v1/prediction/${body.chatflowid}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(body)
-            });
-
-            const data = await response.json();
-            return { data };
-        };
-
-        // Initialize chatbot with custom submit function
+        // Example initialization:
+        // If your .env contains:
+        // agent1=xyz789-uvw456,https://example.com
+        // support=abc123-def456,https://example.com
+        // salesbot=ghi123-jkl456,https://example.com
+        //
+        // Then use the environment variable name as chatflowid:
         Chatbot.init({
-            chatflowid: '47449c62-07f9-40c9-8060-76764090648c',    // or 'support', 'salesbot', etc.
-            apiHost: 'https://flowise-g0ms.onrender.com',
-            chatflowConfig: {
-                // Your config here
-            },
-            onSubmit: (body) => {
-                console.log('Modifying body:', body);
-                body.customField = 'custom value';
-                return body;
-            },
+            chatflowid: 'agent1',    // or 'support', 'salesbot', etc.
+            apiHost: window.location.origin
         })
     </script>
 </body>
