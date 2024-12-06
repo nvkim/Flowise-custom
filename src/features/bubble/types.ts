@@ -1,3 +1,5 @@
+import { observersConfigType } from "@/components/Bot";
+
 export type BubbleParams = {
   theme?: BubbleTheme;
 };
@@ -120,4 +122,14 @@ export type DisclaimerPopUpTheme = {
 export type DateTimeToggleTheme = {
   date?: boolean;
   time?: boolean;
+};
+
+export type BubbleProps = {
+  chatflowid: string;
+  apiHost?: string;
+  onRequest?: (request: RequestInit) => Promise<void>;
+  chatflowConfig?: Record<string, unknown>;
+  theme?: BubbleTheme;
+  observersConfig?: observersConfigType;
+  onSubmit?: (body: any) => any;
 };

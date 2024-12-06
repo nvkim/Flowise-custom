@@ -1,15 +1,23 @@
 import { createSignal, Show, splitProps, onCleanup, createEffect } from 'solid-js';
 import styles from '../../../assets/index.css';
 import { BubbleButton } from './BubbleButton';
-import { BubbleParams } from '../types';
-import { Bot, BotProps } from '../../../components/Bot';
+import { BubbleParams, BubbleTheme } from '../types';
+import { Bot, BotProps, observersConfigType } from '../../../components/Bot';
 import Tooltip from './Tooltip';
 import { getBubbleButtonSize } from '@/utils';
 
 const defaultButtonColor = '#3B81F6';
 const defaultIconColor = 'white';
 
-export type BubbleProps = BotProps & BubbleParams;
+export type BubbleProps = {
+  chatflowid: string;
+  apiHost?: string;
+  onRequest?: (request: RequestInit) => Promise<void>;
+  chatflowConfig?: Record<string, unknown>;
+  theme?: BubbleTheme;
+  observersConfig?: observersConfigType;
+  onSubmit?: (body: any) => any;
+};
 
 export const Bubble = (props: BubbleProps) => {
   const [bubbleProps] = splitProps(props, ['theme']);
@@ -159,6 +167,7 @@ export const Bubble = (props: BubbleProps) => {
               </div>
             </Show>
             <Bot
+              {...props}
               badgeBackgroundColor={bubbleProps.theme?.chatWindow?.backgroundColor}
               bubbleBackgroundColor={bubbleProps.theme?.button?.backgroundColor ?? defaultButtonColor}
               bubbleTextColor={bubbleProps.theme?.button?.iconColor ?? defaultIconColor}
@@ -187,6 +196,7 @@ export const Bubble = (props: BubbleProps) => {
               disclaimer={bubbleProps.theme?.disclaimer}
               dateTimeToggle={bubbleProps.theme?.chatWindow?.dateTimeToggle}
               renderHTML={props.theme?.chatWindow?.renderHTML}
+              onSubmit={props.onSubmit}
             />
           </div>
         </Show>
