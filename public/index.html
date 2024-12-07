@@ -30,7 +30,32 @@
         Chatbot.init({
             chatflowid: 'agent1',    // or 'support', 'salesbot', etc.
             apiHost: window.location.origin,
-            // disableSendMessages: true,
+            onSubmit: (body) => {
+                console.log({ body });
+            },
+
+            theme: {
+                button: {
+                    backgroundColor: "#3B81F6",
+                    right: 20,
+                    bottom: 20,
+                },
+                chatWindow: {
+                    title: "agent",
+                    welcomeMessage: "Hello! How can I help you?",
+                    backgroundColor: "#ffffff",
+                    height: 700,
+                    width: 600,
+                    maximizeButton: {
+                        show: true,
+                    },
+                    textInput: {
+                        disabled: false,
+                        receiveMessageSound: true,
+                        placeholder: 'hello',
+                    },
+                }
+            },
             onOpen: () => {
                 console.log('Chatbot opened');
             }

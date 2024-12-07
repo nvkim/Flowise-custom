@@ -2,7 +2,12 @@
 
 # Flowise Embed
 
-An extension of Flowise Embed that allows you to customize the chatbot with ability to maximize/minimize the chatbot window.
+An extension of Flowise Embed that allows you to customize the chatbot with abilities:
+- to maximize/minimize the chatbot window.
+- to expose onSubmit callback.
+- to expose onOpen callback.
+- to disable the input messages.
+
 
 ![Flowise](https://github.com/FlowiseAI/FlowiseChatEmbed/blob/main/images/ChatEmbed.gif?raw=true)
 
@@ -112,6 +117,12 @@ You can also customize chatbot with different configuration
         console.log({ loading });
       },
     },
+    onSubmit: (body) => {
+      console.log({ body });
+    },
+    onOpen: () => {
+      console.log('onOpen');
+    },
     theme: {
       button: {
         backgroundColor: '#3B81F6',
@@ -179,6 +190,7 @@ You can also customize chatbot with different configuration
           avatarSrc: 'https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png',
         },
         textInput: {
+          disabled: false,
           placeholder: 'Type your question',
           backgroundColor: '#ffffff',
           textColor: '#303235',

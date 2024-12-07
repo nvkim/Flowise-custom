@@ -21,6 +21,7 @@ export type TextInputTheme = {
     sendSoundLocation?: string;
     receiveMessageSound?: boolean;
     receiveSoundLocation?: string;
+    disabled?: boolean;
 };
 export type UserMessageTheme = {
     backgroundColor?: string;
