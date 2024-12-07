@@ -8,6 +8,7 @@ export type BubbleProps = {
     theme?: BubbleTheme;
     observersConfig?: observersConfigType;
     onSubmit?: (body: any) => any;
+    onOpen?: () => void;
 };
 export declare const Bubble: (props: BubbleProps) => import("solid-js").JSX.Element;
 //# sourceMappingURL=Bubble.d.ts.map

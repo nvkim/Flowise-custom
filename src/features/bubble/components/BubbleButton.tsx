@@ -10,6 +10,7 @@ type Props = ButtonTheme & {
   autoOpen?: boolean; // Optional parameter to control automatic window opening
   openDelay?: number; // Optional parameter for delay time in seconds
   autoOpenOnMobile?: boolean; // Optional parameter for opening on mobile
+  onOpen?: () => void; // Add this new prop
 };
 
 const defaultButtonColor = '#3B81F6';
@@ -63,8 +64,17 @@ export const BubbleButton = (props: Props) => {
   };
 
   const handleButtonClick = () => {
+    // Only fire onOpen event if window is currently closed
+    if (!props.isBotOpened) {
+      const chatbot = window.Chatbot;
+      if (chatbot?.onOpen) {
+        chatbot.onOpen();
+      }
+    }
+
+    // Existing functionality
     props.toggleBot();
-    setUserInteracted(true); // Mark that the user has interacted
+    setUserInteracted(true);
     if (window.innerWidth <= 640) {
       setIsSmallScreen(true);
     }

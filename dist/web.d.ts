@@ -7,6 +7,7 @@ declare const chatbot: {
         observersConfig?: import("./components/Bot").observersConfigType | undefined;
         theme?: import("./features/bubble/types").BubbleTheme | undefined;
         onSubmit?: ((body: any) => any) | undefined;
+        onOpen?: (() => void) | undefined;
     } & {
         id?: string | undefined;
     }) => void;
@@ -18,8 +19,10 @@ declare const chatbot: {
         observersConfig?: import("./components/Bot").observersConfigType | undefined;
         theme?: import("./features/bubble/types").BubbleTheme | undefined;
         onSubmit?: ((body: any) => any) | undefined;
+        onOpen?: (() => void) | undefined;
     }) => void;
     destroy: () => void;
+    onOpen: () => void;
 };
 export default chatbot;
 //# sourceMappingURL=web.d.ts.map

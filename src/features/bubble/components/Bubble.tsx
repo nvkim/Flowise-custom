@@ -17,6 +17,7 @@ export type BubbleProps = {
   theme?: BubbleTheme;
   observersConfig?: observersConfigType;
   onSubmit?: (body: any) => any;
+  onOpen?: () => void;
 };
 
 export const Bubble = (props: BubbleProps) => {
@@ -97,6 +98,7 @@ export const Bubble = (props: BubbleProps) => {
         autoOpen={bubbleProps.theme?.button?.autoWindowOpen?.autoOpen ?? false}
         openDelay={bubbleProps.theme?.button?.autoWindowOpen?.openDelay}
         autoOpenOnMobile={bubbleProps.theme?.button?.autoWindowOpen?.autoOpenOnMobile ?? false}
+        onOpen={props.onOpen}
       />
       <div
         part="bot"
