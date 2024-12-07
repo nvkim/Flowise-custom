@@ -3,11 +3,11 @@
 # Flowise Embed
 
 An extension of Flowise Embed that allows you to customize the chatbot with abilities:
+
 - to maximize/minimize the chatbot window.
 - to expose onSubmit callback.
 - to expose onOpen callback.
 - to disable the input messages.
-
 
 ![Flowise](https://github.com/FlowiseAI/FlowiseChatEmbed/blob/main/images/ChatEmbed.gif?raw=true)
 
