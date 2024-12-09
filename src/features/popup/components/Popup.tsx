@@ -68,6 +68,7 @@ export const Popup = (props: PopupProps) => {
 
   const closeBot = () => {
     setIsBotOpened(false);
+    console.log('closeBot');
     popupProps.onClose?.();
     document.body.style.overflow = 'auto';
   };

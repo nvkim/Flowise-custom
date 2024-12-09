@@ -101,6 +101,7 @@ export type BotProps = {
     dateTimeToggle?: DateTimeToggleTheme;
     renderHTML?: boolean;
     onSubmit?: (body: any) => any;
+    onClose?: () => void;
 };
 export type LeadsConfig = {
     status: boolean;

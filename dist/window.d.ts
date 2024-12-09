@@ -9,6 +9,7 @@ type BotProps = {
     theme?: BubbleTheme;
     onSubmit?: (body: any) => any;
     onOpen?: () => void;
+    onClose?: () => void;
 };
 type Chatbot = {
     initFull: (props: BotProps & {
@@ -17,6 +18,7 @@ type Chatbot = {
     init: (props: BotProps) => void;
     destroy: () => void;
     onOpen: () => void;
+    onClose: () => void;
 };
 declare global {
     interface Window {
@@ -30,6 +32,7 @@ export declare const parseChatbot: () => {
     init: (props: BotProps) => void;
     destroy: () => void;
     onOpen: () => void;
+    onClose: () => void;
 };
 export declare const injectChatbotInWindow: (bot: Chatbot) => void;
 export {};

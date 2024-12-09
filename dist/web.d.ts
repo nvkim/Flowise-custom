@@ -8,6 +8,7 @@ declare const chatbot: {
         theme?: import("./features/bubble/types").BubbleTheme | undefined;
         onSubmit?: ((body: any) => any) | undefined;
         onOpen?: (() => void) | undefined;
+        onClose?: (() => void) | undefined;
     } & {
         id?: string | undefined;
     }) => void;
@@ -20,9 +21,11 @@ declare const chatbot: {
         theme?: import("./features/bubble/types").BubbleTheme | undefined;
         onSubmit?: ((body: any) => any) | undefined;
         onOpen?: (() => void) | undefined;
+        onClose?: (() => void) | undefined;
     }) => void;
     destroy: () => void;
     onOpen: () => void;
+    onClose: () => void;
 };
 export default chatbot;
 //# sourceMappingURL=web.d.ts.map

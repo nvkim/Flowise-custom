@@ -11,6 +11,7 @@ type BotProps = {
   theme?: BubbleTheme;
   onSubmit?: (body: any) => any;
   onOpen?: () => void;
+  onClose?: () => void;
 };
 
 type Chatbot = {
@@ -18,6 +19,7 @@ type Chatbot = {
   init: (props: BotProps) => void;
   destroy: () => void;
   onOpen: () => void;
+  onClose: () => void;
 };
 
 declare global {
@@ -30,16 +32,18 @@ let elementUsed: Element | undefined;
 
 export const parseChatbot = () => {
   let onOpen: (() => void) | undefined;
-
+  let onClose: (() => void) | undefined;
   return {
     initFull: (props: BotProps & { id?: string }) => {
       onOpen = props.onOpen;
+      onClose = props.onClose;
       const target = document.createElement('flowise-fullchatbot');
       Object.assign(target, props);
       document.body.appendChild(target);
     },
     init: (props: BotProps) => {
       onOpen = props.onOpen;
+      onClose = props.onClose;
       const target = document.createElement('flowise-chatbot');
       Object.assign(target, {
         ...props,
@@ -54,12 +58,18 @@ export const parseChatbot = () => {
     },
     destroy: () => {
       onOpen = undefined;
+      onClose = undefined;
       document.querySelectorAll('flowise-chatbot').forEach((el) => el.remove());
       document.querySelectorAll('flowise-fullchatbot').forEach((el) => el.remove());
     },
     onOpen: () => {
       if (onOpen) {
         onOpen();
+      }
+    },
+    onClose: () => {
+      if (onClose) {
+        onClose();
       }
     },
   };

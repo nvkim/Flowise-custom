@@ -154,6 +154,7 @@ export type BotProps = {
   dateTimeToggle?: DateTimeToggleTheme;
   renderHTML?: boolean;
   onSubmit?: (body: any) => any;
+  onClose?: () => void;
 };
 
 export type LeadsConfig = {
@@ -973,22 +974,22 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
       const loadedMessages: MessageType[] =
         chatMessage?.chatHistory?.length > 0
           ? chatMessage.chatHistory?.map((message: MessageType) => {
-              const chatHistory: MessageType = {
-                messageId: message?.messageId,
-                message: message.message,
-                type: message.type,
-                rating: message.rating,
-                dateTime: message.dateTime,
-              };
-              if (message.sourceDocuments) chatHistory.sourceDocuments = message.sourceDocuments;
-              if (message.fileAnnotations) chatHistory.fileAnnotations = message.fileAnnotations;
-              if (message.fileUploads) chatHistory.fileUploads = message.fileUploads;
-              if (message.agentReasoning) chatHistory.agentReasoning = message.agentReasoning;
-              if (message.action) chatHistory.action = message.action;
-              if (message.artifacts) chatHistory.artifacts = message.artifacts;
-              if (message.followUpPrompts) chatHistory.followUpPrompts = message.followUpPrompts;
-              return chatHistory;
-            })
+            const chatHistory: MessageType = {
+              messageId: message?.messageId,
+              message: message.message,
+              type: message.type,
+              rating: message.rating,
+              dateTime: message.dateTime,
+            };
+            if (message.sourceDocuments) chatHistory.sourceDocuments = message.sourceDocuments;
+            if (message.fileAnnotations) chatHistory.fileAnnotations = message.fileAnnotations;
+            if (message.fileUploads) chatHistory.fileUploads = message.fileUploads;
+            if (message.agentReasoning) chatHistory.agentReasoning = message.agentReasoning;
+            if (message.action) chatHistory.action = message.action;
+            if (message.artifacts) chatHistory.artifacts = message.artifacts;
+            if (message.followUpPrompts) chatHistory.followUpPrompts = message.followUpPrompts;
+            return chatHistory;
+          })
           : [{ message: props.welcomeMessage ?? defaultWelcomeMessage, type: 'apiMessage' }];
 
       const filteredMessages = loadedMessages.filter((message) => message.type !== 'leadCaptureMessage');
@@ -1634,7 +1635,17 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
           />
         </div>
       </div>
-      {sourcePopupOpen() && <Popup isOpen={sourcePopupOpen()} value={sourcePopupSrc()} onClose={() => setSourcePopupOpen(false)} />}
+      {sourcePopupOpen() && (
+        <Popup
+          isOpen={sourcePopupOpen()}
+          value={sourcePopupSrc()}
+          onClose={() => {
+            setSourcePopupOpen(false);
+            console.log('!onClose');
+            props.onClose?.();
+          }}
+        />
+      )}
 
       {disclaimerPopupOpen() && (
         <DisclaimerPopup

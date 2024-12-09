@@ -88,6 +88,8 @@ export const Full = (props: FullProps, { element }: { element: HTMLElement }) =>
             disclaimer={props.theme?.disclaimer}
             dateTimeToggle={props.theme?.chatWindow?.dateTimeToggle}
             renderHTML={props.theme?.chatWindow?.renderHTML}
+            onClose={props.onClose}
+            onSubmit={props.onSubmit}
           />
         </div>
       </Show>

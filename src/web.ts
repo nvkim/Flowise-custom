@@ -15,22 +15,23 @@ if (typeof window !== 'undefined') {
       theme: undefined,
       observersConfig: undefined,
       onSubmit: undefined,
+      onClose: undefined,
     },
     Bubble,
   );
 
-  // // Register the full page chat web component
-  // customElement('flowise-fullchatbot',
-  //     {
-  //         chatflowid: '',
-  //         apiHost: undefined,
-  //         chatflowConfig: undefined,
-  //         theme: {},
-  //         observersConfig: undefined,
-  //         onSubmit: undefined
-  //     },
-  //     Bot
-  // );
+  // Register the full page chat web component
+  customElement('flowise-fullchatbot',
+    {
+      chatflowid: '',
+      apiHost: undefined,
+      chatflowConfig: undefined,
+      observersConfig: undefined,
+      onSubmit: undefined,
+      onClose: undefined,
+    },
+    Bot
+  );
 }
 
 const chatbot = parseChatbot();

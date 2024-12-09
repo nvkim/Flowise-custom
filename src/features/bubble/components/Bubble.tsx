@@ -18,6 +18,7 @@ export type BubbleProps = {
   observersConfig?: observersConfigType;
   onSubmit?: (body: any) => any;
   onOpen?: () => void;
+  onClose?: () => void;
 };
 
 export const Bubble = (props: BubbleProps) => {
@@ -38,6 +39,7 @@ export const Bubble = (props: BubbleProps) => {
   const closeBot = () => {
     setIsBotOpened(false);
     setIsMaximized(false);
+    props.onClose?.();
   };
 
   const toggleBot = () => {
@@ -199,6 +201,7 @@ export const Bubble = (props: BubbleProps) => {
               dateTimeToggle={bubbleProps.theme?.chatWindow?.dateTimeToggle}
               renderHTML={props.theme?.chatWindow?.renderHTML}
               onSubmit={props.onSubmit}
+              onClose={props.onClose}
             />
           </div>
         </Show>
