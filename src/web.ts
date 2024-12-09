@@ -21,7 +21,8 @@ if (typeof window !== 'undefined') {
   );
 
   // Register the full page chat web component
-  customElement('flowise-fullchatbot',
+  customElement(
+    'flowise-fullchatbot',
     {
       chatflowid: '',
       apiHost: undefined,
@@ -30,7 +31,7 @@ if (typeof window !== 'undefined') {
       onSubmit: undefined,
       onClose: undefined,
     },
-    Bot
+    Bot,
   );
 }
 
