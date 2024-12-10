@@ -116,11 +116,9 @@ export const Bubble = (props: BubbleProps) => {
           transform: isBotOpened() ? 'scale3d(1, 1, 1)' : 'scale3d(0, 0, 1)',
           'box-shadow': 'rgb(0 0 0 / 16%) 0px 5px 40px',
           'background-color': bubbleProps.theme?.chatWindow?.backgroundColor || '#ffffff',
-          position: isMaximized() ? 'fixed' : 'absolute',
-          top: isMaximized() ? '0' : 'auto',
-          left: isMaximized() ? '0' : 'auto',
+          position: 'fixed',
+          bottom: isMaximized() ? '0' : `${chatWindowBottom}px`,
           right: isMaximized() ? '0' : `${buttonPosition().right}px`,
-          bottom: isMaximized() ? '0' : `${buttonPosition().bottom + buttonSize + 10}px`,
           'z-index': 42424242,
         }}
         class={
