@@ -256,8 +256,8 @@ export const BotBubble = (props: Props) => {
                 const isFileStorage = typeof item.data === 'string' && item.data.startsWith('FILE-STORAGE::');
                 return isFileStorage
                   ? `${props.apiHost}/api/v1/get-upload-file?chatflowId=${props.chatflowid}&chatId=${props.chatId}&fileName=${(
-                      item.data as string
-                    ).replace('FILE-STORAGE::', '')}`
+                    item.data as string
+                  ).replace('FILE-STORAGE::', '')}`
                   : (item.data as string);
               })()}
             />
@@ -335,7 +335,7 @@ export const BotBubble = (props: Props) => {
         </Show>
         <div class="flex flex-col justify-start">
           {props.showAgentMessages && props.message.agentReasoning && (
-            <details ref={botDetailsEl} class="mb-2 px-4 py-2 ml-2 chatbot-host-bubble rounded-[6px]">
+            <details ref={botDetailsEl} class={`mb-2 ${props.showAvatar ? 'ml-3' : 'px-4 py-2 ml-2'} chatbot-host-bubble rounded-[6px]`}>
               <summary class="cursor-pointer">
                 <span class="italic">Agent Messages</span>
               </summary>
@@ -375,7 +375,7 @@ export const BotBubble = (props: Props) => {
           {props.message.message && (
             <span
               ref={botMessageEl}
-              class="px-4 py-2 ml-2 max-w-full chatbot-host-bubble prose"
+              class={`${props.showAvatar ? 'ml-3' : 'px-4 py-2 ml-2'} max-w-full chatbot-host-bubble prose`}
               data-testid="host-bubble"
               style={{
                 'background-color': props.backgroundColor ?? defaultBackgroundColor,

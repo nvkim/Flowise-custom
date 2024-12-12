@@ -15,6 +15,7 @@ export type BubbleTheme = {
 export type TextInputTheme = {
   backgroundColor?: string;
   textColor?: string;
+  fontWeight?: number;
   placeholder?: string;
   sendButtonColor?: string;
   maxChars?: number;

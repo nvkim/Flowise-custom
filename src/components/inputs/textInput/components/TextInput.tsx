@@ -15,6 +15,7 @@ type TextInputProps = {
   sendButtonColor?: string;
   inputValue: string;
   fontSize?: number;
+  fontWeight?: number;
   disabled?: boolean;
   onSubmit: (value: string) => void;
   onInputChange: (value: string) => void;
@@ -205,6 +206,7 @@ export const TextInput = (props: TextInputProps) => {
           onInput={handleInput}
           value={props.inputValue}
           fontSize={props.fontSize}
+          fontWeight={props.fontWeight}
           disabled={props.disabled}
           placeholder={props.placeholder ?? 'Type your question'}
         />

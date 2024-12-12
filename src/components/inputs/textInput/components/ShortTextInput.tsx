@@ -5,6 +5,7 @@ type ShortTextInputProps = {
   ref: HTMLInputElement | HTMLTextAreaElement | undefined;
   onInput: (value: string) => void;
   fontSize?: number;
+  fontWeight?: number;
   disabled?: boolean;
 } & Omit<JSX.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onInput'>;
 
@@ -47,6 +48,7 @@ export const ShortTextInput = (props: ShortTextInputProps) => {
       style={{
         'font-size': props.fontSize ? `${props.fontSize}px` : '16px',
         resize: 'none',
+        'font-weight': props.fontWeight ? props.fontWeight : 'normal',
         height: `${props.value !== '' ? height() : DEFAULT_HEIGHT}px`,
       }}
       onInput={handleInput}

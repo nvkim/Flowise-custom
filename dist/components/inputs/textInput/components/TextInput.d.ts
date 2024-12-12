@@ -7,6 +7,7 @@ type TextInputProps = {
     sendButtonColor?: string;
     inputValue: string;
     fontSize?: number;
+    fontWeight?: number;
     disabled?: boolean;
     onSubmit: (value: string) => void;
     onInputChange: (value: string) => void;
