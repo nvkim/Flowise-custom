@@ -556,3 +556,7 @@ textarea {
   color: inherit !important;
   font-weight: 600;
 }
+
+.prose :where(thead th):not(:where([class~=not-prose], [class~=not-prose] *)) {
+  color: inherit !important;
+}
