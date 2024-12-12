@@ -41,18 +41,30 @@
                     bottom: 20,
                 },
                 chatWindow: {
-                    title: "agent",
+                    title: "Agent",
                     welcomeMessage: "Hello! How can I help you?",
-                    backgroundColor: "#ffffff",
+                    backgroundColor: "#0E1320",
                     height: 700,
                     width: 600,
                     maximizeButton: {
                         show: true,
                     },
+                    botMessage: {
+                        backgroundColor: '#111927',
+                        textColor: '#F0F0F0',
+                        showAvatar: true,
+                        avatarSrc: 'https://flowise-g0ms.onrender.com/assets/robot-CdlpHV-J.png',
+                    },
+                    userMessage: {
+                        backgroundColor: '#111927',
+                        textColor: '#F0F0F0',
+                    },
                     textInput: {
                         disabled: false,
                         receiveMessageSound: true,
                         placeholder: 'hello',
+                        backgroundColor: "rgba(255, 255, 255, 0.08)",
+                        textColor: "#F0F0F0",
                     },
                 }
             },
