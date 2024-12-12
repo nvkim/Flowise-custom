@@ -77,17 +77,34 @@ pre {
   color: rgb(0, 43, 54);
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.scrollable-container::-webkit-scrollbar {
-  display: none;
+/* General scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  /* Set the height to 0 to hide the scrollbar initially */
+  /* Add a transition for a smooth effect */
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.scrollable-container {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.5);
+  border-radius: 10px;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(136, 136, 136, 0.8);
+}
+
+/* Scrollbar corner */
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 .text-fade-in {
