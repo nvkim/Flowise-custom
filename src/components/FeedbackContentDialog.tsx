@@ -32,29 +32,27 @@ const FeedbackContentDialog = (props: FeedbackContentDialogProps) => {
     <>
       <div class="flex overflow-x-hidden overflow-y-auto fixed inset-0 z-[1002] outline-none focus:outline-none justify-center items-center">
         <div class="relative w-full my-6 max-w-3xl mx-4">
+
           <div
             class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
             style={{
-              'background-color': props.backgroundColor ?? defaultBackgroundColor,
+              'background-color': props.textColor === '#F0F0F0' ? '#111927' : '#FFF',
               color: props.textColor ?? defaultTextColor,
             }}
           >
             <div
-              class="flex items-center justify-between p-5 border-b border-solid border-blueGray-200 rounded-t"
-              style={{
-                border: '1px solid #eeeeee',
-              }}
+              class="flex items-center justify-between p-5 rounded-t"
             >
               <span class="whitespace-pre-wrap font-semibold max-w-full">Provide additional feedback</span>
               <button
-                class="p-1 ml-auto bg-transparent border-0 text-black float-right text-xl leading-none font-semibold outline-none focus:outline-none"
+                class={`p-1 ml-auto bg-transparent border-0 float-right text-xl leading-none font-semibold outline-none focus:outline-none`}
                 type="button"
                 onClick={onClose}
               >
                 <span class="bg-transparent block outline-none focus:outline-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="text-black h-6 w-6"
+                    class={`${props.textColor === '#F0F0F0' ? 'text-white' : 'text-black'} h-6 w-6`}
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -79,15 +77,18 @@ const FeedbackContentDialog = (props: FeedbackContentDialogProps) => {
                 style={{
                   border: '1px solid #eeeeee',
                   color: props.textColor ?? defaultTextColor,
+                  'background-color': 'transparent',
                 }}
                 placeholder="What do you think of the response?"
-                value={inputValue()}
               />
             </div>
-            <div class="flex items-center justify-end p-4 border-t border-solid border-blueGray-200 rounded-b">
+            <div class="flex items-center justify-end p-4 rounded-b">
               <button
                 class="bg-emerald-500 text-white active:bg-emerald-600 font-bold text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
+                style={{
+                  'background-color': '#2f65cb',
+                }}
                 onClick={submit}
               >
                 Submit Feedback
