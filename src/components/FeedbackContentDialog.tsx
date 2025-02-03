@@ -32,7 +32,6 @@ const FeedbackContentDialog = (props: FeedbackContentDialogProps) => {
     <>
       <div class="flex overflow-x-hidden overflow-y-auto fixed inset-0 z-[1002] outline-none focus:outline-none justify-center items-center">
         <div class="relative w-full my-6 max-w-3xl mx-4">
-
           <div
             class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
             style={{
@@ -40,9 +39,7 @@ const FeedbackContentDialog = (props: FeedbackContentDialogProps) => {
               color: props.textColor ?? defaultTextColor,
             }}
           >
-            <div
-              class="flex items-center justify-between p-5 rounded-t"
-            >
+            <div class="flex items-center justify-between p-5 rounded-t">
               <span class="whitespace-pre-wrap font-semibold max-w-full">Provide additional feedback</span>
               <button
                 class={`p-1 ml-auto bg-transparent border-0 float-right text-xl leading-none font-semibold outline-none focus:outline-none`}
