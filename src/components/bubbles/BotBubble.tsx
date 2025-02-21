@@ -14,7 +14,7 @@ declare global {
   interface Window {
     StockWidget: {
       init(containerId: string): void;
-    }
+    };
   }
 }
 
@@ -256,19 +256,20 @@ export const BotBubble = (props: Props) => {
         setTimeout(() => {
           const scriptElements = botMessageEl?.querySelectorAll('script[id^="initScript-"]');
 
-          scriptElements?.forEach(scriptElement => {
+          scriptElements?.forEach((scriptElement) => {
             try {
               // Get the unique ID suffix from the script tag
               const idSuffix = scriptElement.id.split('initScript-')[1];
 
               // Remove any existing container with the same ID
               const existingContainers = document.querySelectorAll(`#widget-container-${idSuffix}`);
-              existingContainers.forEach(container => container.remove());
+              existingContainers.forEach((container) => container.remove());
 
               // Create new container element
               const containerElement = document.createElement('div');
               containerElement.id = `widget-container-${idSuffix}`;
-              containerElement.style.cssText = 'min-width: 600px; height: 100%; margin: 10px 0; background: transparent; border-radius: 8px; padding: 16px; position: relative;';
+              containerElement.style.cssText =
+                'min-width: 600px; height: 100%; margin: 10px 0; background: transparent; border-radius: 8px; padding: 16px; position: relative;';
 
               // Insert the container right after the script tag
               scriptElement.parentNode?.insertBefore(containerElement, scriptElement.nextSibling);
@@ -297,7 +298,6 @@ export const BotBubble = (props: Props) => {
               `;
 
               document.head.appendChild(initScript);
-
             } catch (error) {
               console.error('Error parsing script data:', error);
             }
@@ -330,8 +330,8 @@ export const BotBubble = (props: Props) => {
                 const isFileStorage = typeof item.data === 'string' && item.data.startsWith('FILE-STORAGE::');
                 return isFileStorage
                   ? `${props.apiHost}/api/v1/get-upload-file?chatflowId=${props.chatflowid}&chatId=${props.chatId}&fileName=${(
-                    item.data as string
-                  ).replace('FILE-STORAGE::', '')}`
+                      item.data as string
+                    ).replace('FILE-STORAGE::', '')}`
                   : (item.data as string);
               })()}
             />
