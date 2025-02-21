@@ -10,6 +10,14 @@ import { TickIcon, XIcon } from '../icons';
 import { SourceBubble } from '../bubbles/SourceBubble';
 import { DateTimeToggleTheme } from '@/features/bubble/types';
 
+declare global {
+  interface Window {
+    StockWidget: {
+      init(containerId: string): void;
+    }
+  }
+}
+
 type Props = {
   message: MessageType;
   chatflowid: string;
@@ -42,7 +50,7 @@ export const BotBubble = (props: Props) => {
   let botMessageEl: HTMLDivElement | undefined;
   let botDetailsEl: HTMLDetailsElement | undefined;
 
-  Marked.setOptions({ isNoP: true, sanitize: props.renderHTML !== undefined ? !props.renderHTML : true });
+  Marked.setOptions({ isNoP: true, sanitize: false });
 
   const [rating, setRating] = createSignal('');
   const [feedbackId, setFeedbackId] = createSignal('');
@@ -199,9 +207,21 @@ export const BotBubble = (props: Props) => {
     }
   };
 
+  function isValidScriptTag(str: string) {
+    // Regular expression to match the pattern
+    const scriptPattern = /<script id="initScript-([a-zA-Z0-9]+)">\s*{.*?}\s*<\/script>/;
+
+    // Test if the string matches the pattern
+    return scriptPattern.test(str);
+  }
+
   onMount(() => {
     if (botMessageEl) {
-      botMessageEl.innerHTML = Marked.parse(props.message.message);
+      let messageContent = props.message.message;
+      messageContent = messageContent.replace(/```html/g, '');
+      messageContent = messageContent.replace(/```/g, '');
+      botMessageEl.innerHTML = Marked.parse(messageContent);
+
       botMessageEl.querySelectorAll('a').forEach((link) => {
         link.target = '_blank';
       });
@@ -230,6 +250,60 @@ export const BotBubble = (props: Props) => {
           botMessageEl.appendChild(button);
         }
       }
+
+      if (isValidScriptTag(messageContent)) {
+        // Add timeout to ensure DOM is ready
+        setTimeout(() => {
+          const scriptElements = botMessageEl?.querySelectorAll('script[id^="initScript-"]');
+
+          scriptElements?.forEach(scriptElement => {
+            try {
+              // Get the unique ID suffix from the script tag
+              const idSuffix = scriptElement.id.split('initScript-')[1];
+
+              // Remove any existing container with the same ID
+              const existingContainers = document.querySelectorAll(`#widget-container-${idSuffix}`);
+              existingContainers.forEach(container => container.remove());
+
+              // Create new container element
+              const containerElement = document.createElement('div');
+              containerElement.id = `widget-container-${idSuffix}`;
+              containerElement.style.cssText = 'min-width: 600px; height: 100%; margin: 10px 0; background: transparent; border-radius: 8px; padding: 16px; position: relative;';
+
+              // Insert the container right after the script tag
+              scriptElement.parentNode?.insertBefore(containerElement, scriptElement.nextSibling);
+
+              // Parse the content of the script tag as JSON
+              const content = scriptElement.textContent?.trim() || '';
+              const cleanedContent = content.replace(/^\{|\}$/g, '');
+              const data = JSON.parse(cleanedContent);
+
+              // // Remove any existing initialization script
+              // const existingScript = document.getElementById(`init-${idSuffix}`);
+              // if (existingScript) {
+              //   existingScript.remove();
+              // }
+
+              const initScript = document.createElement('script');
+              initScript.id = `init-${idSuffix}`;
+              initScript.textContent = `
+                (function() {
+                  if (window.StockWidget && window.StockWidget.init) {
+                    window.StockWidget.init('widget-container-${idSuffix}', ${JSON.stringify(data)});
+                  } else {
+                    console.warn('StockWidget not found for ${idSuffix}');
+                  }
+                })();
+              `;
+
+              document.head.appendChild(initScript);
+
+            } catch (error) {
+              console.error('Error parsing script data:', error);
+            }
+          });
+        }, 500);
+      }
     }
 
     if (botDetailsEl && props.isLoading) {
@@ -256,8 +330,8 @@ export const BotBubble = (props: Props) => {
                 const isFileStorage = typeof item.data === 'string' && item.data.startsWith('FILE-STORAGE::');
                 return isFileStorage
                   ? `${props.apiHost}/api/v1/get-upload-file?chatflowId=${props.chatflowid}&chatId=${props.chatId}&fileName=${(
-                      item.data as string
-                    ).replace('FILE-STORAGE::', '')}`
+                    item.data as string
+                  ).replace('FILE-STORAGE::', '')}`
                   : (item.data as string);
               })()}
             />

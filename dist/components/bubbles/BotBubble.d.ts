@@ -1,5 +1,12 @@
 import { IAction, MessageType } from '../Bot';
 import { DateTimeToggleTheme } from '@/features/bubble/types';
+declare global {
+    interface Window {
+        StockWidget: {
+            init(containerId: string): void;
+        };
+    }
+}
 type Props = {
     message: MessageType;
     chatflowid: string;
