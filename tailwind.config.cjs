@@ -39,14 +39,19 @@ module.exports = {
                     '100%': {
                         opacity: '1'
                     }
+                },
+                'pulse-ring': {
+                    '0%': { transform: 'scale(1)', opacity: '0.8' },
+                    '100%': { transform: 'scale(1.3)', opacity: '0' },
                 }
             },
             animation: {
-                'fade-in': 'fade-in 0.3s ease-out'
+                'fade-in': 'fade-in 0.3s ease-out',
+                'pulse-ring': 'pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) 3',
             }
         }
     },
     plugins: [
-      require('@tailwindcss/typography')
+        require('@tailwindcss/typography')
     ]
 }
